@@ -9,9 +9,10 @@ import static com.codeborne.selenide.Selenide.$;
 
 public class AccountLoginTest extends TestBase {
 
+    AuthConfig config = ConfigFactory.create(AuthConfig.class, System.getProperties());
+
     @Test
     void successfulAccountLoginTest() {
-        AuthConfig config = ConfigFactory.create(AuthConfig.class, System.getProperties());
         $(".flex-shrink-0").shouldHave(text("Личный кабинет\nналогоплательщика"));
         $("#username_1").setValue(config.username());
         $("#password_2").setValue(config.password());
@@ -22,7 +23,6 @@ public class AccountLoginTest extends TestBase {
 
     @Test
     void unsuccessfulAccountLoginTest() {
-        AuthConfig config = ConfigFactory.create(AuthConfig.class, System.getProperties());
         $(".flex-shrink-0").shouldHave(text("Личный кабинет\nналогоплательщика"));
         $("#username_1").setValue(config.username());
         $("#password_2").setValue(config.wrongPassword());

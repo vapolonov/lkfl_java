@@ -5,15 +5,15 @@ import org.aeonbits.owner.ConfigFactory;
 import org.junit.jupiter.api.Test;
 import pages.LoginPage;
 
-public class AccountLoginPageObjectTest extends TestBase{
+public class AccountLoginPageObjectTest extends TestBase {
 
     LoginPage loginPage = new LoginPage();
     String header = "Личный кабинет\nналогоплательщика";
     String wrongNameOrPassword = "Неверный ИНН/пароль";
+    AuthConfig config = ConfigFactory.create(AuthConfig.class, System.getProperties());
 
-   @Test
+    @Test
     void successfulAccountLoginTest() {
-       AuthConfig config = ConfigFactory.create(AuthConfig.class, System.getProperties());
         loginPage.openPage(header);
         loginPage.fillName(config.username());
         loginPage.fillPassword(config.password());
@@ -23,7 +23,6 @@ public class AccountLoginPageObjectTest extends TestBase{
 
     @Test
     void unsuccessfulAccountLoginTest() {
-       AuthConfig config = ConfigFactory.create(AuthConfig.class, System.getProperties());
         loginPage.openPage(header);
         loginPage.fillName(config.username());
         loginPage.fillPassword(config.wrongPassword());
